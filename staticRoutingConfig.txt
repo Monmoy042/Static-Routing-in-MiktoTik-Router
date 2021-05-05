@@ -1,0 +1,134 @@
+## Configuration of R1
+======================
+Set hostname
+--------------
+[admin@MikroTik] > system identity set name=R1
+
+Setup Ip Address
+-----------------
+[admin@R1] > ip address add address=10.10.10.1/30 interface=ether1 disabled=no 
+[admin@R1] > ip address add address=192.168.1.1/24 interface=ether2 disabled=no
+
+Show Ip Address Information
+------------------------------
+[admin@R1] > ip address 
+[admin@R1] /ip address> print
+Flags: X - disabled, I - invalid, D - dynamic 
+ #   ADDRESS            NETWORK         INTERFACE                              
+ 0   10.10.10.1/30      10.10.10.0      ether1                                 
+ 1   192.168.1.1/24     192.168.1.0     ether2
+
+Setup Static Routing
+----------------------
+[admin@R1] > ip route add dst-address=192.168.2.0/24 gateway=10.10.10.2
+[admin@R1] > ip route add dst-address=192.168.3.0/24 gateway=10.10.10.2
+
+Show Routing Information
+-------------------------
+[admin@R1] > ip route
+[admin@R1] /ip route> print
+Flags: X - disabled, A - active, D - dynamic, 
+C - connect, S - static, r - rip, b - bgp, o - ospf, m - mme, 
+B - blackhole, U - unreachable, P - prohibit 
+ #      DST-ADDRESS        PREF-SRC        GATEWAY            DISTANCE
+ 0 ADC  10.10.10.0/30      10.10.10.1      ether1                    0
+ 1 ADC  192.168.1.0/24     192.168.1.1     ether2                    0
+ 2 A S  192.168.2.0/24                     10.10.10.2                1
+ 3 A S  192.168.3.0/24                     10.10.10.2                1
+
+## Configuration of R2
+=======================
+Set hostname
+--------------
+[admin@MikroTik] > system identity set name=R2
+
+Setup Ip Address
+-----------------
+[admin@R2] > ip address add address=10.10.10.2/30 interface=ether1 disabled=no 
+[admin@R2] > ip address add address=20.20.20.1/30 interface=ether2 disabled=no  
+[admin@R2] > ip address add address=192.168.2.1/24 interface=ether3 disabled=no 
+
+Show Ip Address Information
+----------------------------
+[admin@R2] > ip address 
+[admin@R2] /ip address> print
+Flags: X - disabled, I - invalid, D - dynamic 
+ #   ADDRESS            NETWORK         INTERFACE                              
+ 0   10.10.10.2/30      10.10.10.0      ether1                                 
+ 1   20.20.20.1/30      20.20.20.0      ether2                                 
+ 2   192.168.2.1/24     192.168.2.0     ether3
+
+Setup Static Routing
+----------------------
+[admin@R2] > ip route add dst-address=192.168.1.0/24 gateway=10.10.10.1
+[admin@R2] > ip route add dst-address=192.168.3.0/24 gateway=20.20.20.2
+
+Show Routing Information
+-------------------------
+[admin@R2] > ip route 
+[admin@R2] /ip route> print
+Flags: X - disabled, A - active, D - dynamic, 
+C - connect, S - static, r - rip, b - bgp, o - ospf, m - mme, 
+B - blackhole, U - unreachable, P - prohibit 
+ #      DST-ADDRESS        PREF-SRC        GATEWAY            DISTANCE
+ 0 ADC  10.10.10.0/30      10.10.10.2      ether1                    0
+ 1 ADC  20.20.20.0/30      20.20.20.1      ether2                    0
+ 2 A S  192.168.1.0/24                     10.10.10.1                1
+ 3 ADC  192.168.2.0/24     192.168.2.1     ether3                    0
+ 4 A S  192.168.3.0/24                     20.20.20.2                1
+
+## Configuration of R3
+=======================
+Set hostname
+--------------
+[admin@MikroTik] > system identity set name=R3
+ 
+Setup Ip Address
+-----------------
+[admin@R3] > ip address add address=20.20.20.2/30 interface=ether1 disabled=no
+[admin@R3] > ip address add address=192.168.3.1/24 interface=ether2 disabled=no
+ 
+Show Ip Address Information
+----------------------------
+[admin@R3] > ip address 
+[admin@R3] /ip address> print
+Flags: X - disabled, I - invalid, D - dynamic 
+ #   ADDRESS            NETWORK         INTERFACE                              
+ 0   20.20.20.2/30      20.20.20.0      ether1                                 
+ 1   192.168.3.1/24     192.168.3.0     ether2
+
+Setup Static Routing
+----------------------
+[admin@R3] > ip route add dst-address=192.168.1.0/24 gateway=20.20.20.1
+[admin@R3] > ip route add dst-address=192.168.2.0/24 gateway=20.20.20.1
+
+Show Routing Information
+-------------------------
+[admin@R3] > ip route 
+[admin@R3] /ip route> print
+Flags: X - disabled, A - active, D - dynamic, 
+C - connect, S - static, r - rip, b - bgp, o - ospf, m - mme, 
+B - blackhole, U - unreachable, P - prohibit 
+ #      DST-ADDRESS        PREF-SRC        GATEWAY            DISTANCE
+ 0 ADC  20.20.20.0/30      20.20.20.2      ether1                    0
+ 1 A S  192.168.1.0/24                     20.20.20.1                1
+ 2 A S  192.168.2.0/24                     20.20.20.1                1
+ 3 ADC  192.168.3.0/24     192.168.3.1     ether2                    0
+
+ ## Configuration of PC1
+ ========================
+PC1> ip 192.168.1.2/24 192.168.1.1
+Checking for duplicate address...
+PC1 : 192.168.1.2 255.255.255.0 gateway 192.168.1.1
+
+ ## Configuration of PC2
+ ========================
+PC2> ip 192.168.2.2/24 192.168.2.1
+Checking for duplicate address...
+PC2 : 192.168.2.2 255.255.255.0 gateway 192.168.2.1
+
+ ## Configuration of PC3
+ ========================
+PC3> ip 192.168.3.2/24 192.168.3.1
+Checking for duplicate address...
+PC3 : 192.168.3.2 255.255.255.0 gateway 192.168.3.1

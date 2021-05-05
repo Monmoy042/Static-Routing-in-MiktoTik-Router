@@ -1,0 +1,12 @@
+May 05 06:26:34.416 HYPERVISOR: Release 0.2.21-amd64/Linux (tag 2019071212)
+May 05 06:26:34.416 HYPERVISOR: Started on IP = localhost, TCP port = 52351.
+May 05 06:26:34.428 HYPERVISOR: exec_cmd: hypervisor version 
+May 05 06:26:34.428 HYPERVISOR: exec_cmd: hypervisor working_dir /home/kms/GNS3/projects/staticRouting/project-files/dynamips 
+May 05 06:26:34.428 GENERAL: working_dir=/home/kms/GNS3/projects/staticRouting/project-files/dynamips
+May 05 06:26:34.428 HYPERVISOR: exec_cmd: ethsw create Switch3 
+May 05 06:26:34.553 HYPERVISOR: exec_cmd: nio create_udp udp-3df2536c-f713-4e48-92f9-b786af612748 10005 127.0.0.1 10004 
+May 05 06:26:34.553 HYPERVISOR: exec_cmd: ethsw add_nio Switch3 udp-3df2536c-f713-4e48-92f9-b786af612748 
+May 05 06:26:34.556 HYPERVISOR: exec_cmd: ethsw set_access_port Switch3 udp-3df2536c-f713-4e48-92f9-b786af612748 1 
+May 05 06:26:34.755 HYPERVISOR: exec_cmd: nio create_udp udp-8c8dedea-931d-4f8f-901a-ba2865a69107 10014 127.0.0.1 10015 
+May 05 06:26:34.755 HYPERVISOR: exec_cmd: ethsw add_nio Switch3 udp-8c8dedea-931d-4f8f-901a-ba2865a69107 
+May 05 06:26:34.757 HYPERVISOR: exec_cmd: ethsw set_access_port Switch3 udp-8c8dedea-931d-4f8f-901a-ba2865a69107 1 

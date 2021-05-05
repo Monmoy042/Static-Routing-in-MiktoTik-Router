@@ -1,0 +1,5 @@
+Start QEMU with /bin/qemu-system-x86_64 -name R2 -m 512M -smp cpus=2,sockets=1 -enable-kvm -machine smm=off -boot order=c -drive file=/home/kms/GNS3/projects/staticRouting/project-files/qemu/deb41a9a-9880-48b3-bda7-423d6ec0f681/hda_disk.qcow2,if=ide,index=0,media=disk,id=drive0 -uuid deb41a9a-9880-48b3-bda7-423d6ec0f681 -serial telnet:127.0.0.1:5003,server,nowait -monitor tcp:127.0.0.1:39005,server,nowait -net none -device e1000,mac=0c:5a:52:f6:81:00,netdev=gns3-0 -netdev socket,id=gns3-0,udp=127.0.0.1:10017,localaddr=127.0.0.1:10016 -device e1000,mac=0c:5a:52:f6:81:01,netdev=gns3-1 -netdev socket,id=gns3-1,udp=127.0.0.1:10019,localaddr=127.0.0.1:10018 -device e1000,mac=0c:5a:52:f6:81:02,netdev=gns3-2 -netdev socket,id=gns3-2,udp=127.0.0.1:10021,localaddr=127.0.0.1:10020 -device e1000,mac=0c:5a:52:f6:81:03,netdev=gns3-3 -netdev socket,id=gns3-3,udp=127.0.0.1:10023,localaddr=127.0.0.1:10022 -display none
+
+Execution log:
+qemu-system-x86_64: warning: host doesn't support requested feature: CPUID.80000001H:ECX.svm [bit 2]
+qemu-system-x86_64: warning: host doesn't support requested feature: CPUID.80000001H:ECX.svm [bit 2]
